@@ -33,7 +33,7 @@ def create_app(extra_config_settings={}):
     app.config.update(extra_config_settings)  # Overwrite with 'extra_config_settings' parameter
     if app.testing:
         app.config['WTF_CSRF_ENABLED'] = False  # Disable CSRF checks while testing
-
+    print(env_settings_file)
 
     # Setup Flask-Migrate
     migrate = Migrate(app, db)
