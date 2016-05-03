@@ -4,6 +4,9 @@
 # Heroku environment
 gunicorn==19.3.0
 psycopg2==2.5.4
+cffi==0.8.2
+cryptography==0.3
+
 
 # Flask Framework
 Flask==0.10.1
