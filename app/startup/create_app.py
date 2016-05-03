@@ -90,7 +90,7 @@ def init_email_error_handler(app):
     # Retrieve app settings from app.config
     to_addr_list = app.config['ADMINS']
     subject = app.config.get('APP_SYSTEM_ERROR_SUBJECT_LINE', 'System Error')
-
+    """
     # Setup an SMTP mail handler for error-level messages
     import logging
     from logging.handlers import SMTPHandler
@@ -105,5 +105,5 @@ def init_email_error_handler(app):
     )
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
-
+    """
     # Log errors using: app.logger.error('Some error message')
