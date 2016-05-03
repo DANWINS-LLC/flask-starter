@@ -90,6 +90,13 @@ def init_email_error_handler(app):
     # Retrieve app settings from app.config
     to_addr_list = app.config['ADMINS']
     subject = app.config.get('APP_SYSTEM_ERROR_SUBJECT_LINE', 'System Error')
+
+    import logging
+    stream_handler = logging.StreamHandler()
+    app.logger.addHandler(stream_handler)
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('microblog startup')
+    
     """
     # Setup an SMTP mail handler for error-level messages
     import logging
