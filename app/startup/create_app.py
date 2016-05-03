@@ -6,6 +6,7 @@ from flask_mail import Mail
 from flask_migrate import Migrate, MigrateCommand
 from flask_user import UserManager, SQLAlchemyAdapter
 from flask_wtf.csrf import CsrfProtect
+import requests
 import os
 from app import app, db, manager
 
@@ -79,15 +80,15 @@ def init_email_error_handler(app):
     if app.debug: return  # Do not send error emails while developing
 
     # Retrieve email settings from app.config
-    host = app.config['MAIL_SERVER']
+    host = 'smtp.mailgun.org'
     port = app.config['MAIL_PORT']
     from_addr = app.config['MAIL_DEFAULT_SENDER']
-    username = app.config['MAIL_USERNAME']
-    password = app.config['MAIL_PASSWORD']
+    username = 'postmaster@sandboxe186d9e577054347ba3c6c6dd52932cc.mailgun.org'
+    password = '7a3faa2e7ad6212219036029394e84f6'
     secure = () if app.config.get('MAIL_USE_TLS') else None
 
     # Retrieve app settings from app.config
-    to_addr_list = app.config['ADMINS']
+    to_addr_list = ['"Dan" <dan@danwins.com>']
     subject = app.config.get('APP_SYSTEM_ERROR_SUBJECT_LINE', 'System Error')
 
     # Setup an SMTP mail handler for error-level messages
@@ -106,7 +107,3 @@ def init_email_error_handler(app):
     app.logger.addHandler(mail_handler)
 
     # Log errors using: app.logger.error('Some error message')
-
-
-
-
