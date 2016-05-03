@@ -80,15 +80,15 @@ def init_email_error_handler(app):
     if app.debug: return  # Do not send error emails while developing
 
     # Retrieve email settings from app.config
-    host = 'smtp.mailgun.org'
+    host = app.config['MAIL_SERVER']
     port = app.config['MAIL_PORT']
     from_addr = app.config['MAIL_DEFAULT_SENDER']
-    username = 'postmaster@sandboxe186d9e577054347ba3c6c6dd52932cc.mailgun.org'
-    password = '7a3faa2e7ad6212219036029394e84f6'
+    username = app.config['MAIL_USERNAME']
+    password = app.config['MAIL_PASSWORD']
     secure = () if app.config.get('MAIL_USE_TLS') else None
 
     # Retrieve app settings from app.config
-    to_addr_list = ['"Dan" <dan@danwins.com>']
+    to_addr_list = app.config['ADMINS']
     subject = app.config.get('APP_SYSTEM_ERROR_SUBJECT_LINE', 'System Error')
 
     # Setup an SMTP mail handler for error-level messages
